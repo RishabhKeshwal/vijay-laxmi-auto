@@ -1,26 +1,122 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.98 0.01 270); /* Light gray with indigo undertone */
+  --foreground: oklch(0.25 0.08 270); /* Dark indigo text */
+  --card: oklch(1 0 0); /* White cards */
+  --card-foreground: oklch(0.25 0.08 270); /* Dark indigo text */
+  --popover: oklch(1 0 0); /* White popovers */
+  --popover-foreground: oklch(0.25 0.08 270); /* Dark indigo text */
+  --primary: oklch(0.55 0.15 270); /* Indigo-600 */
+  --primary-foreground: oklch(0.98 0.01 0); /* Near-white for contrast */
+  --secondary: oklch(0.90 0.05 270); /* Light indigo-gray */
+  --secondary-foreground: oklch(0.25 0.08 270); /* Dark indigo text */
+  --muted: oklch(0.95 0.02 270); /* Very light indigo-gray */
+  --muted-foreground: oklch(0.50 0.10 270); /* Muted indigo text */
+  --accent: oklch(0.65 0.18 280); /* Indigo-500 with a slight purple shift */
+  --accent-foreground: oklch(0.98 0.01 0); /* Near-white */
+  --destructive: oklch(0.60 0.25 10); /* Red for errors */
+  --border: oklch(0.88 0.03 270); /* Light indigo border */
+  --input: oklch(0.95 0.02 270); /* Light indigo-gray input */
+  --ring: oklch(0.55 0.15 270); /* Indigo-600 for focus rings */
+  --chart-1: oklch(0.55 0.15 270); /* Indigo-600 */
+  --chart-2: oklch(0.60 0.18 275); /* Slightly lighter indigo */
+  --chart-3: oklch(0.65 0.20 280); /* Indigo with purple tint */
+  --chart-4: oklch(0.70 0.22 285); /* Lighter indigo-purple */
+  --chart-5: oklch(0.75 0.25 290); /* Bright indigo-purple */
+  --sidebar: oklch(0.98 0.01 270); /* Light gray-indigo sidebar */
+  --sidebar-foreground: oklch(0.25 0.08 270); /* Dark indigo text */
+  --sidebar-primary: oklch(0.55 0.15 270); /* Indigo-600 */
+  --sidebar-primary-foreground: oklch(0.98 0.01 0); /* Near-white */
+  --sidebar-accent: oklch(0.90 0.05 270); /* Light indigo-gray */
+  --sidebar-accent-foreground: oklch(0.25 0.08 270); /* Dark indigo */
+  --sidebar-border: oklch(0.88 0.03 270); /* Light indigo border */
+  --sidebar-ring: oklch(0.55 0.15 270); /* Indigo-600 */
+}
+
+.dark {
+  --background: oklch(0.20 0.08 270); /* Dark indigo background */
+  --foreground: oklch(0.95 0.02 270); /* Light indigo text */
+  --card: oklch(0.25 0.10 270); /* Darker indigo cards */
+  --card-foreground: oklch(0.95 0.02 270); /* Light indigo text */
+  --popover: oklch(0.25 0.10 270); /* Darker indigo popovers */
+  --popover-foreground: oklch(0.95 0.02 270); /* Light indigo text */
+  --primary: oklch(0.65 0.18 280); /* Indigo-500 */
+  --primary-foreground: oklch(0.20 0.08 270); /* Dark indigo for contrast */
+  --secondary: oklch(0.35 0.12 270); /* Medium indigo-gray */
+  --secondary-foreground: oklch(0.95 0.02 270); /* Light indigo text */
+  --muted: oklch(0.30 0.10 270); /* Dark muted indigo */
+  --muted-foreground: oklch(0.70 0.15 270); /* Muted light indigo */
+  --accent: oklch(0.55 0.15 270); /* Indigo-600 */
+  --accent-foreground: oklch(0.95 0.02 270); /* Light indigo */
+  --destructive: oklch(0.70 0.20 10); /* Brighter red for dark mode */
+  --border: oklch(0.40 0.12 270 / 0.2); /* Semi-transparent indigo border */
+  --input: oklch(0.35 0.12 270); /* Medium indigo-gray input */
+  --ring: oklch(0.65 0.18 280); /* Indigo-500 ring */
+  --chart-1: oklch(0.65 0.18 280); /* Indigo-500 */
+  --chart-2: oklch(0.60 0.15 275); /* Slightly darker indigo */
+  --chart-3: oklch(0.55 0.12 270); /* Indigo-600 */
+  --chart-4: oklch(0.70 0.20 285); /* Lighter indigo-purple */
+  --chart-5: oklch(0.75 0.22 290); /* Bright indigo-purple */
+  --sidebar: oklch(0.25 0.10 270); /* Dark indigo sidebar */
+  --sidebar-foreground: oklch(0.95 0.02 270); /* Light indigo text */
+  --sidebar-primary: oklch(0.65 0.18 280); /* Indigo-500 */
+  --sidebar-primary-foreground: oklch(0.20 0.08 270); /* Dark indigo */
+  --sidebar-accent: oklch(0.35 0.12 270); /* Medium indigo-gray */
+  --sidebar-accent-foreground: oklch(0.95 0.02 270); /* Light indigo */
+  --sidebar-border: oklch(0.40 0.12 270 / 0.2); /* Semi-transparent indigo */
+  --sidebar-ring: oklch(0.65 0.18 280); /* Indigo-500 */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
